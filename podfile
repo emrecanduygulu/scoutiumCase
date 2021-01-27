@@ -1,0 +1,11 @@
+target 'scoutiumProject' do
+	use_frameworks!
+
+	pod 'Firebase/Core'
+	pod 'Firebase/RemoteConfig'
+  pod 'Alamofire'
+  pod 'SwiftyJSON'
+  pod 'SDWebImage'
+
+	end
+
