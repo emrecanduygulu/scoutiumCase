@@ -65,7 +65,6 @@ class secondView: UIViewController, UITableViewDataSource {
         cell.present(url: url, title: title)
         return cell
     }
-
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return datasource.count

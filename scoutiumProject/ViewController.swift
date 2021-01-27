@@ -28,40 +28,16 @@ class ViewController: UIViewController {
         
     }
     
-    
-    
     var timer = 3
     
     override func viewDidLoad() {
         // Do any additional setup after loading the view.
         super.viewDidLoad()
         
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3.0){
-            let nextVC = self.storyboard?.instantiateViewController(identifier: "second_vc") as! secondView
-            let navController = UINavigationController(rootViewController: nextVC)
-            navController.modalPresentationStyle = .fullScreen
-            self.present(navController, animated: true)
-        }
-        
-        
-        
-        
         checkInt()
-        
         
         button.layer.cornerRadius = 20
         button.clipsToBounds = true
-        
-        noCon.isHidden = true
-        dino.isHidden = true
-        button.isHidden = true
-        
-        
-        setupRemoteConfigDefaults()
-        fetchRemoteConfig()
-        displayNewValues()
-        
         
     }
     
@@ -70,6 +46,22 @@ class ViewController: UIViewController {
         monitor.pathUpdateHandler = { path in
             if path.status == .satisfied {
                 print("We're connected!")
+                
+                self.noCon.isHidden = true
+                self.dino.isHidden = true
+                self.button.isHidden = true
+                
+                self.setupRemoteConfigDefaults()
+                self.fetchRemoteConfig()
+                self.displayNewValues()
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + 3.0){
+                    let nextVC = self.storyboard?.instantiateViewController(identifier: "second_vc") as! secondView
+                    let navController = UINavigationController(rootViewController: nextVC)
+                    navController.modalPresentationStyle = .fullScreen
+                    self.present(navController, animated: true)
+                    
+                }
                 
                 
             } else {
@@ -106,5 +98,6 @@ class ViewController: UIViewController {
     func displayNewValues() {
         let newLabelText = remoteConfig.configValue(forKey: "text").stringValue ?? ""
         text.text = newLabelText
+
     }
 }

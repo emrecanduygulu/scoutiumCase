@@ -27,6 +27,5 @@ class ItemCell: UITableViewCell {
         
         itemImage.sd_setImage(with: baseUrl, placeholderImage: UIImage(named: "pngwing.com"))
         selectionStyle = .none
-        
     }
 }
